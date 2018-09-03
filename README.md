@@ -1,0 +1,2 @@
+# Advanced Profanity Filter App
+This project helps remove profanity from standalone files (`txt`, `pdf`, `docx`, etc). It is completely configurable and uses the same filter engine and configuration as the web version: [Advanced Profanity Filter](https://github.com/richardfrost/AdvancedProfanityFilter).
