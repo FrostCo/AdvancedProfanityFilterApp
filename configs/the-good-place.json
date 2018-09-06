@@ -1,0 +1,150 @@
+{
+  "advancedDomains": [],
+  "censorCharacter": "*",
+  "censorFixedLength": 0,
+  "defaultSubstitutions": [
+    "censored",
+    "expletive",
+    "filtered"
+  ],
+  "defaultWordMatchMethod": 0,
+  "defaultWordRepeat": false,
+  "disabledDomains": [],
+  "filterMethod": 1,
+  "globalMatchMethod": 3,
+  "password": null,
+  "preserveCase": true,
+  "preserveFirst": true,
+  "preserveLast": false,
+  "showCounter": true,
+  "substitutionMark": false,
+  "words": {
+    "ass": {
+      "matchMethod": 0,
+      "repeat": true,
+      "words": [
+        "ash"
+      ]
+    },
+    "asses": {
+      "matchMethod": 0,
+      "repeat": false,
+      "words": [
+        "ashes"
+      ]
+    },
+    "asshole": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "ashhole"
+      ]
+    },
+    "bastard": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "explative"
+      ]
+    },
+    "bitch": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "bench"
+      ]
+    },
+    "cunt": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "explative"
+      ]
+    },
+    "dammit": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "dangit"
+      ]
+    },
+    "damn": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "dang",
+        "darn"
+      ]
+    },
+    "dick": {
+      "matchMethod": 0,
+      "repeat": true,
+      "words": [
+        "dink"
+      ]
+    },
+    "dumbass": {
+      "matchMethod": 0,
+      "repeat": true,
+      "words": [
+        "dumbash"
+      ]
+    },
+    "fuck": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "fork"
+      ]
+    },
+    "god": {
+      "matchMethod": 0,
+      "repeat": false,
+      "words": [
+        "gosh"
+      ]
+    },
+    "piss": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "pee"
+      ]
+    },
+    "pissed": {
+      "matchMethod": 0,
+      "repeat": true,
+      "words": [
+        "ticked"
+      ]
+    },
+    "shit": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "shirt"
+      ]
+    },
+    "slut": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "explative"
+      ]
+    },
+    "tits": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "explative"
+      ]
+    },
+    "whore": {
+      "matchMethod": 1,
+      "repeat": true,
+      "words": [
+        "explative"
+      ]
+    }
+  }
+}
