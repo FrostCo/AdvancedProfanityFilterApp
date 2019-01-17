@@ -5,8 +5,9 @@ import LocalFilter from './localFilter';
 
 ////
 // Global Variables
-let cfgFile = populateConfigs();
-let configSelect = document.getElementById('configSelect');
+let cfgFile; // = populateConfigs();
+// let configSelect = document.getElementById('configSelect');
+let configHolder = document.getElementById('configHolder');
 let holder = document.getElementById('drag-file');
 
 function batchProcess(files) {
@@ -43,19 +44,28 @@ function generateSummaryTable(batchSummary, cfg) {
   document.getElementById('summaryContainer').innerHTML = tableInnerHTML;
 }
 
-function populateConfigs() {
-  let configFiles = glob.sync('./configs/**/*.json').sort();
-  let configSelectHTML = '';
-  configFiles.forEach(configFile => {
-    configSelectHTML += `<option value="${configFile}">${path.basename(configFile)}</option>`;
-  });
-  document.getElementById('configSelect').innerHTML = configSelectHTML;
-  return configFiles[0];
-}
+// function populateConfigs() {
+//   let configFiles = glob.sync('./configs/**/*.json').sort();
+//   let configSelectHTML = '';
+//   configFiles.forEach(configFile => {
+//     configSelectHTML += `<option value="${configFile}">${path.basename(configFile)}</option>`;
+//   });
+//   document.getElementById('configSelect').innerHTML = configSelectHTML;
+//   return configFiles[0];
+// }
 
 ////
 // Event Handlers
-configSelect.onchange = function(e) { cfgFile = e.target.value; }
+// configSelect.onchange = function(e) { cfgFile = e.target.value; }
+configHolder.ondragover = () => { return false; };
+configHolder.ondragleave = () => { return false; };
+configHolder.ondragend = () => { return false; };
+configHolder.ondrop = e => {
+  e.preventDefault();
+  cfgFile = e.dataTransfer.files[0].path;
+  document.getElementById('cfgName').innerText = path.basename(cfgFile);
+};
+
 // Drag and Drop Files
 holder.ondragover = () => { return false; };
 holder.ondragleave = () => { return false; };
