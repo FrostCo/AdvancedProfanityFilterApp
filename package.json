@@ -48,8 +48,10 @@
     }
   },
   "dependencies": {
+    "adm-zip": "^0.4.13",
     "electron-compile": "^6.4.3",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "textract": "^2.4.0"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",

@@ -1,5 +1,7 @@
 import fs from 'fs';
 import {Filter} from './lib/filter';
+import AdmZip from 'adm-zip';
+import textract from 'textract';
 
 export default class LocalFilter extends Filter {
   constructor(config) {
@@ -9,11 +11,41 @@ export default class LocalFilter extends Filter {
     this.prepare();
   }
 
-  cleanFile(source, destination) {
+  cleanEpubFile(source, destination) {
+    let filter = this;
+    let filtered = false;
+    var zip = new AdmZip(source);
+
+    zip.getEntries().forEach(function(zipEntry) {
+      if (zipEntry.entryName.match(/^OEBPS\/text\/.+.xhtml$/i)) {
+        let originalText = zipEntry.getData().toString('utf8');
+        let filteredText = filter.replaceText(originalText);
+        if (originalText != filteredText) {
+          filtered = true;
+          zip.updateFile(zipEntry, Buffer.alloc(filteredText.length, filteredText));
+        }
+      }
+    });
+    if (filtered) {
+      zip.writeZip(destination);
+    }
+  }
+
+  cleanOtherFile(source, destination) {
+    let filter = this;
+    textract.fromFileWithPath(source, function(error, text) {
+      if (!error) {
+        let output = filter.replaceText(text);
+        if (text != output) {
+          fs.writeFileSync(destination, output);
+        }
+      }
+    });
+  }
+
+  cleanTextFile(source, destination) {
     let contents = fs.readFileSync(source).toString();
-    // console.log(contents);
     let output = this.replaceText(contents);
-    // console.log(output);
     fs.writeFileSync(destination, output);
   }
 

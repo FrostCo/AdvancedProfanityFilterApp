@@ -22,10 +22,26 @@ function batchProcess(files) {
     let ext = path.extname(f.path);
     let outputDir = path.dirname(f.path);
     let output = path.join(outputDir, `clean-${fileName}`);
-
-    filter.cleanFile(f.path, output);
-    batchSummary[fileName] = filter.summary;
     filter.summary = {};
+
+    try {
+      switch(ext.toLowerCase()) {
+        case '.epub':
+          filter.cleanEpubFile(f.path, output);
+          break;
+        case '.md':
+        case '.srt':
+        case '.txt':
+          filter.cleanTextFile(f.path, output);
+          break;
+        default:
+          filter.cleanOtherFile(f.path, output);
+      }
+      batchSummary[fileName] = filter.summary;
+    }
+    catch (e) {
+      console.log('Error', e);
+    }
   }
 
   generateSummaryTable(batchSummary, cfg);
