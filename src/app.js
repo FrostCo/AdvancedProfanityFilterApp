@@ -52,7 +52,7 @@ function generateSummaryTable(batchSummary, cfg) {
   Object.keys(batchSummary).sort().forEach(key => {
     tableInnerHTML += `<tr><td>${key}</td><td><table class="w3-table w3-striped w3-border">`;
     Object.keys(batchSummary[key]).forEach(match => {
-      tableInnerHTML += `<tr><td>${cfg.words[match].words[0]}</td><td class="w3-right-align">${batchSummary[key][match]}</td></tr>`;
+      tableInnerHTML += `<tr><td>${cfg.words[match].sub}</td><td class="w3-right-align">${batchSummary[key][match]}</td></tr>`;
     });
     tableInnerHTML += '</table>';
   });

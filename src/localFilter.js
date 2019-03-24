@@ -16,13 +16,16 @@ export default class LocalFilter extends Filter {
     let filtered = false;
     var zip = new AdmZip(source);
 
+    // Ensure mimetype file is first in the archive
+    // Hack: add `if (a.entryName === "mimetype") {return -1}` to node_modules/adm-zip/zipFile.js
+    // See: https://github.com/cthackers/adm-zip/issues/116
     zip.getEntries().forEach(function(zipEntry) {
-      if (zipEntry.entryName.match(/^OEBPS\/text\/.+.xhtml$/i)) {
+      if (zipEntry.entryName.match(/^OEBPS\/.+\.xhtml$/i)) {
         let originalText = zipEntry.getData().toString('utf8');
         let filteredText = filter.replaceText(originalText);
         if (originalText != filteredText) {
           filtered = true;
-          zip.updateFile(zipEntry, Buffer.alloc(filteredText.length, filteredText));
+          zip.updateFile(zipEntry, Buffer.alloc(Buffer.byteLength(filteredText), filteredText));
         }
       }
     });
